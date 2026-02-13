@@ -9,16 +9,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-         server: [6233630,6533774,6564015,6564018]
+         server: [6233630]
     timeout-minutes: 360
     steps:
       - uses: actions/checkout@v2
-        name: Setup on Port ${{matrix.server}}
-      - name: Run the Server build process
-        uses: addnab/docker-run-action@v3
-        with:
-            image: ${{ secrets.IMAGE }}
-            options: -e ID=${{matrix.server}}
-            run: |
-                timeout 5m bash start.sh
-                echo $?
+      - name: Setup on Port ${{matrix.server}}
+        run: |
+          docker -v
