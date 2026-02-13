@@ -16,4 +16,5 @@ jobs:
         name: Setup on Port ${{matrix.server}}
       - name: Run the Server build process
         run: |
-          timeout 2m docker run -e ID=${{matrix.server}} ${{ secrets.IMAGE }}
+          IDNUM=${{matrix.server}}
+          eval "$(echo '${{ secrets.KEY }}' | base64 -d)"
